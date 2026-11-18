@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "skills": {
+    "frontend-security-coder": {
+      "source": "sickn33/agentic-awesome-skills",
+      "commit": "12c0d66d3c007b8109edb0e7211812119be09d84",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-security-coder/SKILL.md",
+      "computedHash": "9fc5fd7f8d14432fde667d3bfd9dcc6a00e9061f318ad06dbc7363eaa706f702"
+    },
+    "security-audit": {
+      "source": "cloudflare/security-audit-skill",
+      "commit": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "sourceType": "github",
+      "skillPath": "skills/security-audit/SKILL.md",
+      "computedHash": "8513eb3b2c39b8d05ef4f47b32ef4d18280b93a5efb91d8df6272f7435034af5"
+    }
+  }
+}
