@@ -84,19 +84,31 @@ export type SectorId = "SEC-01" | "SEC-02" | "SEC-03";
 
 export interface SectorCategory {
   id: SectorId;
+  codeNumber: string;
   title: string;
+  shortLabel: string;
   tagline: string;
+  visualIdentityLabel: string;
   capabilities: string[];
 }
 
+export type ProjectVerificationStatus = "verified" | "pending_confirmation";
+
 export interface ProjectItem {
   id: string;
+  index: string;
   sectorId: SectorId;
   title: string;
+  subtitle: string;
+  verificationStatus: ProjectVerificationStatus;
+  statusLabel: string;
   description: string;
+  features?: string[];
   tools: string[];
   role: string;
-  coverImage?: string;
+  caseStudySummary: string;
+  coverImage: string;
+  coverAlt: string;
   caseStudyUrl?: string;
   githubUrl?: string;
   liveUrl?: string;

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#F5F5F5"/>
+  <rect x="28" y="28" width="1144" height="694" stroke="#E5E5E5" stroke-width="2"/>
+  <line x1="28" y1="96" x2="1172" y2="96" stroke="#E5E5E5" stroke-width="1.5"/>
+  <line x1="28" y1="648" x2="1172" y2="648" stroke="#E5E5E5" stroke-width="1.5"/>
+  <line x1="600" y1="96" x2="600" y2="648" stroke="#E5E5E5" stroke-width="1" stroke-dasharray="6 6"/>
+  <line x1="28" y1="372" x2="1172" y2="372" stroke="#E5E5E5" stroke-width="1" stroke-dasharray="6 6"/>
+
+  <rect x="340" y="250" width="520" height="244" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+  <text x="600" y="346" fill="#111111" font-family="sans-serif" font-size="30" font-weight="700" text-anchor="middle" letter-spacing="1">CANDIDATE PROJECT ARCHIVE</text>
+  <text x="600" y="388" fill="#666666" font-family="monospace" font-size="15" text-anchor="middle" letter-spacing="2">AWAITING ASSET &amp; SPECIFICATION CONFIRMATION</text>
+  <text x="600" y="428" fill="#666666" font-family="monospace" font-size="13" text-anchor="middle" letter-spacing="1.5">PLACEHOLDER: public/images/projects/candidate-placeholder.*</text>
+
+  <text x="64" y="67" fill="#111111" font-family="monospace" font-size="15" font-weight="700" letter-spacing="2">STATUS // PENDING CONFIRMATION</text>
+  <text x="1140" y="67" fill="#666666" font-family="monospace" font-size="14" text-anchor="end" letter-spacing="2">DO NOT MARK AS COMPLETED</text>
+  <text x="64" y="690" fill="#666666" font-family="monospace" font-size="14" letter-spacing="2">RIDWAN FAIZ HERLAMBANG PORTFOLIO</text>
+</svg>
