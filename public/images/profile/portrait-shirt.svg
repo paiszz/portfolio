@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F5F5F5"/>
+  <rect x="24" y="24" width="752" height="952" stroke="#E5E5E5" stroke-width="2"/>
+  <line x1="24" y1="120" x2="776" y2="120" stroke="#E5E5E5" stroke-width="1.5"/>
+  <line x1="24" y1="860" x2="776" y2="860" stroke="#E5E5E5" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="400" y2="860" stroke="#E5E5E5" stroke-width="1" stroke-dasharray="6 6"/>
+  <line x1="24" y1="490" x2="776" y2="490" stroke="#E5E5E5" stroke-width="1" stroke-dasharray="6 6"/>
+
+  <!-- Corner registration marks -->
+  <path d="M56 152 V180 M56 152 H84" stroke="#111111" stroke-width="2"/>
+  <path d="M744 152 V180 M744 152 H716" stroke="#111111" stroke-width="2"/>
+  <path d="M56 828 V800 M56 828 H84" stroke="#111111" stroke-width="2"/>
+  <path d="M744 828 V800 M744 828 H716" stroke="#111111" stroke-width="2"/>
+
+  <!-- Minimalist geometric garment schematic (Shirt / Collar) -->
+  <circle cx="400" cy="360" r="76" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+  <path d="M236 740 C236 590 304 520 400 520 C496 520 564 590 564 740 Z" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+  <!-- Shirt collar & button placket lines -->
+  <path d="M348 524 L400 596 L452 524" stroke="#111111" stroke-width="2.5" fill="none"/>
+  <line x1="400" y1="596" x2="400" y2="740" stroke="#111111" stroke-width="2"/>
+  <circle cx="400" cy="632" r="3.5" fill="#111111"/>
+  <circle cx="400" cy="668" r="3.5" fill="#111111"/>
+  <circle cx="400" cy="704" r="3.5" fill="#111111"/>
+
+  <!-- Editorial Metadata Labels -->
+  <text x="56" y="78" fill="#111111" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">PORTRAIT 01 // DEFAULT STATE</text>
+  <text x="744" y="78" fill="#666666" font-family="monospace" font-size="16" text-anchor="end" letter-spacing="2">SHIRT ATTIRE</text>
+
+  <text x="56" y="912" fill="#111111" font-family="sans-serif" font-size="22" font-weight="700" letter-spacing="1">RIDWAN FAIZ HERLAMBANG</text>
+  <text x="56" y="944" fill="#666666" font-family="monospace" font-size="15" letter-spacing="1.5">PLACEHOLDER: public/images/profile/portrait-shirt.*</text>
+</svg>

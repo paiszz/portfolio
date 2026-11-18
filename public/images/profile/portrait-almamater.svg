@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#111111"/>
+  <rect x="24" y="24" width="752" height="952" stroke="#333333" stroke-width="2"/>
+  <line x1="24" y1="120" x2="776" y2="120" stroke="#333333" stroke-width="1.5"/>
+  <line x1="24" y1="860" x2="776" y2="860" stroke="#333333" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="400" y2="860" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="6 6"/>
+  <line x1="24" y1="490" x2="776" y2="490" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="6 6"/>
+
+  <!-- Corner registration marks -->
+  <path d="M56 152 V180 M56 152 H84" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M744 152 V180 M744 152 H716" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M56 828 V800 M56 828 H84" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M744 828 V800 M744 828 H716" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Minimalist geometric garment schematic (Almamater Jacket / Lapels & Crest) -->
+  <circle cx="400" cy="360" r="76" fill="#1A1A1A" stroke="#FFFFFF" stroke-width="2.5"/>
+  <path d="M224 740 C224 584 298 516 400 516 C502 516 576 584 576 740 Z" fill="#1A1A1A" stroke="#FFFFFF" stroke-width="2.5"/>
+  <!-- Almamater blazer lapels & breast emblem schematic -->
+  <path d="M336 522 L400 648 L464 522" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+  <path d="M312 544 L368 648 L400 648" stroke="#A3A3A3" stroke-width="1.75" fill="none"/>
+  <path d="M488 544 L432 648 L400 648" stroke="#A3A3A3" stroke-width="1.75" fill="none"/>
+  <line x1="400" y1="648" x2="400" y2="740" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="448" y="608" width="44" height="52" rx="4" stroke="#FFFFFF" stroke-width="2" fill="#111111"/>
+  <line x1="458" y1="626" x2="482" y2="626" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="458" y1="640" x2="476" y2="640" stroke="#A3A3A3" stroke-width="1.5"/>
+
+  <!-- Editorial Metadata Labels -->
+  <text x="56" y="78" fill="#FFFFFF" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">PORTRAIT 02 // HOVER STATE</text>
+  <text x="744" y="78" fill="#A3A3A3" font-family="monospace" font-size="16" text-anchor="end" letter-spacing="2">TELKOM UNIVERSITY ALMAMATER</text>
+
+  <text x="56" y="912" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="700" letter-spacing="1">S1 INFORMATIKA — TELKOM UNIVERSITY</text>
+  <text x="56" y="944" fill="#A3A3A3" font-family="monospace" font-size="15" letter-spacing="1.5">PLACEHOLDER: public/images/profile/portrait-almamater.*</text>
+</svg>

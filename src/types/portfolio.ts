@@ -21,6 +21,30 @@ export interface NavItem {
     | "Mail";
 }
 
+export interface AboutParagraph {
+  id: string;
+  label: string;
+  content: string;
+}
+
+export interface PortraitAsset {
+  src: string;
+  alt: string;
+  caption: string;
+  stateLabel: string;
+  isPlaceholder: boolean;
+}
+
+export interface AboutData {
+  heading: string;
+  subheading: string;
+  paragraphs: AboutParagraph[];
+  portraits: {
+    default: PortraitAsset;
+    hover: PortraitAsset;
+  };
+}
+
 export type SkillCategoryKey =
   | "programming"
   | "frontend"
@@ -30,13 +54,14 @@ export type SkillCategoryKey =
 export interface SkillItem {
   name: string;
   category: SkillCategoryKey;
-  iconPath?: string;
+  domain: string;
 }
 
 export interface SkillCategory {
   key: SkillCategoryKey;
   title: string;
   code: string;
+  description: string;
   skills: SkillItem[];
 }
 
@@ -46,8 +71,11 @@ export interface ExperienceItem {
   title: string;
   organization: string;
   position: string;
-  period: string;
+  contextType: string;
+  period?: string;
+  sessionTitle?: string;
   summary: string;
+  detailsLabel: string;
   details: string[];
   image?: string;
 }

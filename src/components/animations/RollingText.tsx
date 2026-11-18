@@ -12,8 +12,8 @@ interface RollingTextProps {
 }
 
 const REEL_EASE = [0.16, 1, 0.3, 1] as const;
-const ITEM_HEIGHT_PX = 28;
-const REEL_CYCLES = 3;
+const ITEM_HEIGHT_PX = 32;
+const REEL_CYCLES = 2;
 
 function buildReelSequence(
   items: readonly string[],
@@ -49,7 +49,7 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
   const animationKey = `${cycleTick}-${manualRollCount}`;
   const isInitialOrCycle = manualRollCount === 0;
   const activeDelay = isInitialOrCycle ? delay : 0;
-  const duration = 1.35 + index * 0.28;
+  const duration = 0.78 + index * 0.16;
 
   const triggerManualRoll = () => {
     if (shouldReduceMotion || isAnimatingRef.current) return;
@@ -63,7 +63,7 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
       onMouseEnter={triggerManualRoll}
       aria-label={`${title} — replay rolling text`}
       className={cn(
-        "group relative flex w-full items-center justify-between gap-3 border border-border-subtle bg-bg-primary/85 px-3.5 py-3 text-left transition-colors sm:px-4",
+        "group relative flex w-full items-center justify-between gap-3 border border-border-subtle bg-bg-primary/85 px-3.5 py-2.5 text-left transition-colors sm:px-4",
         "hover:border-text-primary/40 hover:bg-bg-secondary/70",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
       )}
@@ -72,17 +72,9 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
         {slotNumber}
       </span>
 
-      <span
-        className="relative h-7 flex-1 overflow-hidden"
-        style={{
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
-        }}
-      >
+      <span className="relative h-8 flex-1 overflow-hidden">
         {shouldReduceMotion ? (
-          <span className="flex h-7 items-center truncate text-sm font-medium tracking-tight text-text-primary sm:text-base">
+          <span className="flex h-8 items-center truncate text-sm font-medium leading-8 tracking-tight text-text-primary sm:text-base">
             {title}
           </span>
         ) : (
@@ -106,7 +98,7 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
             {sequence.map((entry, stepIdx) => (
               <span
                 key={`${entry}-${stepIdx}`}
-                className="flex h-7 shrink-0 items-center truncate text-sm font-medium tracking-tight text-text-primary sm:text-base"
+                className="flex h-8 shrink-0 items-center truncate text-sm font-medium leading-8 tracking-tight text-text-primary sm:text-base"
               >
                 {entry}
               </span>
@@ -125,8 +117,8 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
 
 export function RollingText({
   items,
-  baseDelay = 0.25,
-  staggerDelay = 0.18,
+  baseDelay = 0.2,
+  staggerDelay = 0.14,
   className,
 }: RollingTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);

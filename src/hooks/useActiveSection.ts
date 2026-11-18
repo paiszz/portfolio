@@ -30,7 +30,7 @@ export function useActiveSection(defaultSection: SectionId = "home") {
       },
       {
         rootMargin: "-25% 0px -55% 0px",
-        threshold: [0.1, 0.25, 0.5, 0.75],
+        threshold: [0, 0.1, 0.25, 0.5, 0.75],
       }
     );
 
