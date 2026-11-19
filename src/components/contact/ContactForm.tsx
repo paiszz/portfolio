@@ -169,7 +169,7 @@ export function ContactForm() {
                 fieldErrors.name ? "contact-name-error" : undefined
               }
               className={cn(
-                "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary/70 transition-colors",
+                "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary transition-colors",
                 "focus:border-text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-text-primary disabled:opacity-60",
                 fieldErrors.name ? "border-text-primary" : "border-border-subtle"
               )}
@@ -208,7 +208,7 @@ export function ContactForm() {
                 fieldErrors.email ? "contact-email-error" : undefined
               }
               className={cn(
-                "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary/70 transition-colors",
+                "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary transition-colors",
                 "focus:border-text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-text-primary disabled:opacity-60",
                 fieldErrors.email ? "border-text-primary" : "border-border-subtle"
               )}
@@ -247,7 +247,7 @@ export function ContactForm() {
               fieldErrors.subject ? "contact-subject-error" : undefined
             }
             className={cn(
-              "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary/70 transition-colors",
+              "mt-2 block w-full border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary transition-colors",
               "focus:border-text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-text-primary disabled:opacity-60",
               fieldErrors.subject
                 ? "border-text-primary"
@@ -292,7 +292,7 @@ export function ContactForm() {
               fieldErrors.message ? "contact-message-error" : undefined
             }
             className={cn(
-              "mt-2 block w-full resize-y border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary/70 transition-colors",
+              "mt-2 block w-full resize-y border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary transition-colors",
               "focus:border-text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-text-primary disabled:opacity-60",
               fieldErrors.message
                 ? "border-text-primary"
