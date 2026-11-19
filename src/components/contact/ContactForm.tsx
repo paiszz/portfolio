@@ -12,6 +12,13 @@ import type { ContactFormPayload } from "@/types/portfolio";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+interface ContactApiResponse {
+  ok?: boolean;
+  message?: string;
+  error?: string;
+  fieldErrors?: ContactFieldErrors;
+}
+
 const INITIAL_VALUES: ContactFormPayload = {
   name: "",
   email: "",
@@ -23,6 +30,7 @@ export function ContactForm() {
   const shouldReduceMotion = useReducedMotion();
 
   const [values, setValues] = useState<ContactFormPayload>(INITIAL_VALUES);
+  const [honeypot, setHoneypot] = useState("");
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusDetail, setStatusDetail] = useState<string | null>(null);
@@ -62,18 +70,46 @@ export function ContactForm() {
     setStatusDetail(null);
 
     try {
-      // Phase 5B UI-only handler: simulates form submission state without sending a real email.
-      await new Promise((resolve) => window.setTimeout(resolve, 650));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...validation.data,
+          website: honeypot,
+        }),
+      });
+
+      let payload: ContactApiResponse | null = null;
+      try {
+        payload = (await response.json()) as ContactApiResponse;
+      } catch {
+        payload = null;
+      }
+
+      if (!response.ok || payload?.ok !== true) {
+        if (payload?.fieldErrors) {
+          setFieldErrors(payload.fieldErrors);
+        }
+        setStatus("error");
+        setStatusDetail(
+          payload?.error ||
+            "Unable to send your message right now. Your entered data has been preserved for retry."
+        );
+        return;
+      }
 
       setStatus("success");
       setStatusDetail(
-        "UI preview verified. Live email delivery will be enabled once Resend API integration is connected."
+        "Thank you for reaching out. Your message has been delivered."
       );
       setValues(INITIAL_VALUES);
+      setHoneypot("");
     } catch {
       setStatus("error");
       setStatusDetail(
-        "Unable to process your request right now. Your entered message has been preserved for retry."
+        "Network error while sending your message. Your entered data has been preserved for retry."
       );
     }
   };
@@ -92,6 +128,20 @@ export function ContactForm() {
         <span className="font-mono text-[10px] tracking-widest text-text-secondary uppercase">
           All Fields Required
         </span>
+      </div>
+
+      {/* Honeypot field for spam protection (kept offscreen and excluded from tab order) */}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
       </div>
 
       <div className="space-y-5">
@@ -323,7 +373,7 @@ export function ContactForm() {
       {/* Submit Action */}
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border-subtle pt-5">
         <p className="font-mono text-[10px] tracking-wider text-text-secondary uppercase">
-          Preview Mode — API Pending Phase 5C
+          Direct Delivery · Reply-To Enabled
         </p>
 
         <motion.button
