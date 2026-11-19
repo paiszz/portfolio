@@ -225,7 +225,8 @@ export async function POST(request: Request) {
     if (error || !data?.id) {
       console.error(
         "[contact-api] Email delivery failed:",
-        error?.name ?? "missing_message_id"
+        error?.name ?? "missing_message_id",
+        error?.message ?? ""
       );
       return NextResponse.json(
         {
