@@ -32,18 +32,18 @@ export const ABOUT_DATA: AboutData = {
   ],
   portraits: {
     default: {
-      src: "/images/profile/portrait-shirt.svg",
-      alt: "Ridwan Faiz Herlambang wearing a shirt (default portrait placeholder)",
+      src: "/images/profile/kemeja.svg",
+      alt: "Ridwan Faiz Herlambang wearing a shirt",
       caption: "Casual Shirt Portrait",
       stateLabel: "STATE 01 — SHIRT",
-      isPlaceholder: true,
+      isPlaceholder: false,
     },
     hover: {
-      src: "/images/profile/portrait-almamater.svg",
-      alt: "Ridwan Faiz Herlambang wearing Telkom University almamater jacket (hover portrait placeholder)",
+      src: "/images/profile/almamater%20Telkom%20University.svg",
+      alt: "Ridwan Faiz Herlambang wearing Telkom University almamater jacket",
       caption: "Telkom University Almamater",
       stateLabel: "STATE 02 — ALMAMATER",
-      isPlaceholder: true,
+      isPlaceholder: false,
     },
   },
 };
