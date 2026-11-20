@@ -72,9 +72,9 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
 
       {/* Main Split Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        {/* Left: Project Cover / Schematic Preview (16:9 full-bleed across viewports) */}
-        <div className="border-b border-border-subtle bg-bg-secondary lg:col-span-7 lg:border-r lg:border-b-0">
-          <div className="relative aspect-video h-full w-full overflow-hidden">
+        {/* Left: Project Cover / Schematic Preview (strict 16:9 without cropping) */}
+        <div className="flex items-center border-b border-border-subtle bg-bg-secondary lg:col-span-7 lg:border-r lg:border-b-0">
+          <div className="relative aspect-video w-full overflow-hidden">
             <Image
               src={project.coverImage}
               alt={project.coverAlt}
@@ -86,7 +86,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
         </div>
 
         {/* Right: Project Details, Tools, Role & Actions */}
-        <div className="flex flex-col justify-between p-5 sm:p-6 lg:col-span-5">
+        <div className="flex flex-col justify-between p-5 lg:col-span-5">
           <div>
             <h3 className="text-xl font-bold tracking-tight text-text-primary sm:text-2xl">
               {project.title}
@@ -95,13 +95,13 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
               {project.subtitle}
             </p>
 
-            <p className="mt-4 max-w-[65ch] text-sm leading-relaxed text-text-primary sm:text-base">
+            <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-text-primary">
               {project.description}
             </p>
 
             {/* Personal Role & Contribution */}
-            <div className="mt-5 border-t border-border-subtle pt-4">
-              <p className="text-xs leading-relaxed text-text-secondary sm:text-sm">
+            <div className="mt-3.5 border-t border-border-subtle pt-3">
+              <p className="text-xs leading-relaxed text-text-secondary">
                 <strong className="font-mono text-[11px] font-semibold tracking-wider text-text-primary uppercase">
                   Role &amp; Contribution:{" "}
                 </strong>
@@ -110,7 +110,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
             </div>
 
             {/* Technology Stack / Design Tools */}
-            <div className="mt-4 flex flex-wrap items-center gap-1.5">
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
               {project.tools.map((tool) => (
                 <span
                   key={tool}
@@ -123,7 +123,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
           </div>
 
           {/* Action Buttons: View Case Study + Live Demo / GitHub */}
-          <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-border-subtle pt-5">
+          <div className="mt-4 flex flex-wrap items-center gap-2.5 border-t border-border-subtle pt-4">
             <button
               type="button"
               aria-expanded={caseStudyOpen}
