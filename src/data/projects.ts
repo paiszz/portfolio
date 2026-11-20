@@ -66,9 +66,8 @@ export const PROJECT_ITEMS: ProjectItem[] = [
     role: "Software Developer — Full-stack application development, authentication integration, and production deployment.",
     caseStudySummary:
       "Noctis consolidates fragmented productivity tools into a single workspace at noctis.ridwanfaiz.web.id. Built with Next.js and Supabase, it provides authenticated persistence for schedules, tasks, notes, and calendars alongside real-time web push reminders.",
-    coverImage: "/images/projects/noctis-preview.svg",
-    coverAlt:
-      "Noctis — Your Personal Productivity Space schematic preview (replace at public/images/projects/noctis-preview.*)",
+    coverImage: "/images/projects/noctis.svg",
+    coverAlt: "Noctis — Your Personal Productivity Space application preview",
     liveUrl: "https://noctis.ridwanfaiz.web.id/",
   },
   {
@@ -127,8 +126,8 @@ export const PROJECT_ITEMS: ProjectItem[] = [
     role: "UI/UX & Frontend Designer — Interface layout, information hierarchy, and interactive component states.",
     caseStudySummary:
       "The live interface is deployed at noctis.ridwanfaiz.web.id. Dedicated wireframe boards or Figma prototype links can be attached once confirmed by the portfolio owner.",
-    coverImage: "/images/projects/noctis-preview.svg",
-    coverAlt: "Noctis UI/UX interface schematic preview",
+    coverImage: "/images/projects/noctis.svg",
+    coverAlt: "Noctis UI/UX — Productivity workspace interface preview",
     liveUrl: "https://noctis.ridwanfaiz.web.id/",
   },
   {
