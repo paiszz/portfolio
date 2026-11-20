@@ -71,39 +71,27 @@ export const PROJECT_ITEMS: ProjectItem[] = [
     liveUrl: "https://noctis.ridwanfaiz.web.id/",
   },
   {
-    id: "roomify-software",
+    id: "malora-software",
     index: "02",
     sectorId: "SEC-01",
-    title: "Roomify",
-    subtitle: "Software Development Candidate — Data Pending Confirmation",
-    verificationStatus: "pending_confirmation",
-    statusLabel: "Pending Confirmation",
+    title: "MALORA — Master Prompt Studio",
+    subtitle: "AI PROMPT BUILDER & STUDIO WEB APPLICATION",
+    verificationStatus: "work_in_progress",
+    statusLabel: "Work in Progress",
     description:
-      "Listed in the PRD as a candidate project for Software Development. Specific feature scope, technology stack, repository link, and completion status require owner confirmation before publishing as completed work.",
-    tools: ["Pending Stack Confirmation"],
-    role: "Software Development Candidate (Awaiting verified contribution details)",
+      "A structured AI prompt engineering studio designed to standardize complex visual generation workflows—integrating modular parameter controls, strict text-based reference role separation, bilingual natural-language prompt compilation (ID/EN), JSON schema configuration, local autosave, and Supabase cloud project synchronization.",
+    features: [
+      "Bilingual Prompt Engine: Compiles structured JSON configurations into idiomatic Indonesian or English prompts with strict reference-boundary rules.",
+      "Modular Visual Controls: Dedicated modules for Reference Roles, Subject Identity Preservation, Pose & Camera Control, Art Direction, Scene Reconstruction, and Negative Constraints.",
+      "Dual Storage Architecture: Offline-first localStorage persistence with autosave alongside optional Supabase cloud sync, user authentication, and optimistic concurrency conflict handling.",
+      "Multi-View Studio Workspace: Includes Dashboard, Prompt Builder, Modules Catalog, JSON Config Editor, and Docs with route-based lazy loading.",
+    ],
+    tools: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Vite"],
+    role: "Software Developer — Full-stack application development, modular prompt engine architecture, dual local/cloud state management, and Supabase authentication and database integration.",
     caseStudySummary:
-      "Placeholder entry reserved for Roomify. To publish this card as a verified project, please provide the actual application description, confirmed tech stack, personal contribution, screenshots, and repository or live URL.",
-    coverImage: "/images/projects/candidate-placeholder.svg",
-    coverAlt: "Roomify candidate project placeholder awaiting asset confirmation",
-  },
-  {
-    id: "yukjalan-software",
-    index: "03",
-    sectorId: "SEC-01",
-    title: "YukJalan!",
-    subtitle: "Software Development Candidate — Data Pending Confirmation",
-    verificationStatus: "pending_confirmation",
-    statusLabel: "Pending Confirmation",
-    description:
-      "Listed in the PRD as a candidate project for Software Development. Project status, verified feature set, technology stack, and preview assets are awaiting confirmation.",
-    tools: ["Pending Stack Confirmation"],
-    role: "Software Development Candidate (Awaiting verified contribution details)",
-    caseStudySummary:
-      "Placeholder entry reserved for YukJalan!. No unverified claims, completion status, or URLs have been added. Replace with confirmed project data and screenshots when ready.",
-    coverImage: "/images/projects/candidate-placeholder.svg",
-    coverAlt:
-      "YukJalan! candidate project placeholder awaiting asset confirmation",
+      "Writing complex prompts for AI image generators often leads to inconsistent results and identity drift when multiple references (identity, pose, outfit, background) are mixed. MALORA solves this by enforcing a structured JSON schema (UAPMF) that separates reference roles and visual parameters before compiling them into a clean, ready-to-use natural-language prompt.",
+    coverImage: "/images/projects/malora.svg",
+    coverAlt: "MALORA — Master Prompt Studio application preview",
   },
 
   // SEC-02 — UI/UX DESIGNER
@@ -129,23 +117,6 @@ export const PROJECT_ITEMS: ProjectItem[] = [
     coverImage: "/images/projects/noctis.svg",
     coverAlt: "Noctis UI/UX — Productivity workspace interface preview",
     liveUrl: "https://noctis.ridwanfaiz.web.id/",
-  },
-  {
-    id: "roomify-yukjalan-uiux",
-    index: "02",
-    sectorId: "SEC-02",
-    title: "Roomify UI/UX & YukJalan! UI/UX",
-    subtitle: "UI/UX Candidate Case Studies — Data Pending Confirmation",
-    verificationStatus: "pending_confirmation",
-    statusLabel: "Pending Confirmation",
-    description:
-      "Candidate UI/UX design projects listed in the PRD (Roomify UI/UX and YukJalan! UI/UX). Wireframes, user flows, Figma prototypes, and specific role descriptions are awaiting confirmation.",
-    tools: ["Figma (Pending Confirmation)", "Wireframing & Prototyping"],
-    role: "UI/UX Designer Candidate (Awaiting verified case study artifacts)",
-    caseStudySummary:
-      "Reserved for Roomify UI/UX and YukJalan! UI/UX case studies. Provide verified screen exports, problem statements, and Figma prototype links to convert these candidates into full case study cards.",
-    coverImage: "/images/projects/candidate-placeholder.svg",
-    coverAlt: "UI/UX candidate projects placeholder awaiting confirmation",
   },
 
   // SEC-03 — GRAPHIC DESIGN

@@ -29,6 +29,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
   const [caseStudyOpen, setCaseStudyOpen] = useState(false);
 
   const isVerified = project.verificationStatus === "verified";
+  const isWorkInProgress = project.verificationStatus === "work_in_progress";
   const hasSafeLiveUrl = isSafeHttpsUrl(project.liveUrl);
   const hasSafeGithubUrl = isSafeHttpsUrl(project.githubUrl);
   const caseStudyPanelId = `case-study-${project.id}`;
@@ -37,7 +38,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
     <article
       className={cn(
         "overflow-hidden border bg-bg-primary transition-shadow duration-300",
-        isVerified
+        isVerified || isWorkInProgress
           ? "border-text-primary shadow-[0_18px_40px_-18px_rgba(17,17,17,0.16)]"
           : "border-border-subtle shadow-[0_12px_30px_-18px_rgba(17,17,17,0.1)]"
       )}
@@ -52,7 +53,7 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
           <span
             className={cn(
               "px-2 py-0.5 font-mono text-[10px] font-medium tracking-widest uppercase",
-              isVerified
+              isVerified || isWorkInProgress
                 ? "bg-surface-dark text-surface-light"
                 : "bg-bg-primary text-text-secondary"
             )}
@@ -66,7 +67,9 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
             ? project.statusLabel.toLowerCase().includes("pending")
               ? "LIVE INTERFACE"
               : "VERIFIED DEPLOYMENT"
-            : "DATA CONFIRMATION REQUIRED"}
+            : isWorkInProgress
+              ? "WORK IN PROGRESS"
+              : "DATA CONFIRMATION REQUIRED"}
         </span>
       </div>
 

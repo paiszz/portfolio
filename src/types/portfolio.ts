@@ -92,7 +92,10 @@ export interface SectorCategory {
   capabilities: string[];
 }
 
-export type ProjectVerificationStatus = "verified" | "pending_confirmation";
+export type ProjectVerificationStatus =
+  | "verified"
+  | "work_in_progress"
+  | "pending_confirmation";
 
 export interface ProjectItem {
   id: string;
