@@ -72,19 +72,21 @@ export function ProjectCard({ project, totalInSector }: ProjectCardProps) {
 
       {/* Main Split Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        {/* Left: Project Cover / Schematic Preview */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border-subtle bg-bg-secondary lg:col-span-5 lg:aspect-auto lg:min-h-[340px] lg:border-r lg:border-b-0">
-          <Image
-            src={project.coverImage}
-            alt={project.coverAlt}
-            fill
-            sizes="(max-width: 1024px) 100vw, 480px"
-            className="object-cover transition-transform duration-500 hover:scale-[1.02]"
-          />
+        {/* Left: Project Cover / Schematic Preview (16:9 full-bleed across viewports) */}
+        <div className="border-b border-border-subtle bg-bg-secondary lg:col-span-7 lg:border-r lg:border-b-0">
+          <div className="relative aspect-video h-full w-full overflow-hidden">
+            <Image
+              src={project.coverImage}
+              alt={project.coverAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 660px"
+              className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
         </div>
 
         {/* Right: Project Details, Tools, Role & Actions */}
-        <div className="flex flex-col justify-between p-5 sm:p-7 lg:col-span-7">
+        <div className="flex flex-col justify-between p-5 sm:p-6 lg:col-span-5">
           <div>
             <h3 className="text-xl font-bold tracking-tight text-text-primary sm:text-2xl">
               {project.title}
