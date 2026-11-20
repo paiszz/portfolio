@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { FluidCursorMaskReveal } from "@/components/animations/FluidCursorMaskReveal";
 import { Parallax } from "@/components/animations/Parallax";
 import { cn } from "@/lib/utils";
 import type { AboutData } from "@/types/portfolio";
@@ -11,15 +11,11 @@ interface InteractivePortraitProps {
   portraits: AboutData["portraits"];
 }
 
-const PORTRAIT_EASE = [0.22, 1, 0.36, 1] as const;
-
 export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
   const shouldReduceMotion = useReducedMotion();
-  const [isHovered, setIsHovered] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
 
-  const showAlmamater = isHovered || isToggled;
-  const activePortrait = showAlmamater ? portraits.hover : portraits.default;
+  const activePortrait = isToggled ? portraits.hover : portraits.default;
 
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-none">
@@ -72,22 +68,12 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
 
       <Parallax offset={18}>
         <div className="border border-border-subtle bg-bg-secondary p-3 sm:p-4">
-          {/* Interactive Portrait Viewport */}
+          {/* Interactive Fluid Cursor Mask Portrait Viewport */}
           <div
             role="button"
             tabIndex={0}
-            aria-pressed={showAlmamater}
-            aria-label={`Interactive portrait: currently showing ${activePortrait.caption}. Hover or press to switch between Shirt and Telkom University Almamater portrait.`}
-            onPointerEnter={(event) => {
-              if (event.pointerType === "mouse") {
-                setIsHovered(true);
-              }
-            }}
-            onPointerLeave={(event) => {
-              if (event.pointerType === "mouse") {
-                setIsHovered(false);
-              }
-            }}
+            aria-pressed={isToggled}
+            aria-label={`Interactive portrait: currently showing ${activePortrait.caption}. Move cursor to reveal Telkom University Almamater fluidly, or click to toggle full view.`}
             onClick={() => setIsToggled((prev) => !prev)}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
@@ -97,63 +83,23 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
             }}
             className="group relative aspect-[4/5] w-full cursor-pointer overflow-hidden bg-bg-primary select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
           >
-            {/* Default Portrait (Shirt) */}
-            <motion.div
-              initial={false}
-              animate={{
-                scale: showAlmamater && !shouldReduceMotion ? 1.03 : 1,
-                opacity: showAlmamater ? 0 : 1,
-              }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { duration: 0.55, ease: PORTRAIT_EASE }
-              }
-              className="absolute inset-0"
-            >
-              <Image
-                src={portraits.default.src}
-                alt={portraits.default.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"
-                className="object-cover"
-              />
-            </motion.div>
-
-            {/* Hover / Active Portrait (Telkom University Almamater) */}
-            <motion.div
-              initial={false}
-              animate={{
-                opacity: showAlmamater ? 1 : 0,
-                scale: showAlmamater || shouldReduceMotion ? 1 : 1.04,
-                clipPath: shouldReduceMotion
-                  ? "inset(0% 0% 0% 0%)"
-                  : showAlmamater
-                    ? "inset(0% 0% 0% 0%)"
-                    : "inset(100% 0% 0% 0%)",
-              }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { duration: 0.55, ease: PORTRAIT_EASE }
-              }
-              className="absolute inset-0"
-            >
-              <Image
-                src={portraits.hover.src}
-                alt={portraits.hover.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"
-                className="object-cover"
-              />
-            </motion.div>
+            <FluidCursorMaskReveal
+              baseSrc={portraits.default.src}
+              revealSrc={portraits.hover.src}
+              baseAlt={portraits.default.alt}
+              revealAlt={portraits.hover.alt}
+              maskRadius={92}
+              trailLength={16}
+              smoothness={0.2}
+              isRevealed={isToggled}
+            />
 
             {/* Top Overlay Status Pill */}
             <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-2">
               <span
                 className={cn(
                   "border px-2.5 py-1 font-mono text-[10px] tracking-widest uppercase transition-colors duration-300",
-                  showAlmamater
+                  isToggled
                     ? "border-surface-light/25 bg-surface-dark/85 text-surface-light"
                     : "border-border-subtle bg-bg-primary/90 text-text-primary"
                 )}
@@ -164,13 +110,13 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
               <span
                 className={cn(
                   "px-2.5 py-1 font-mono text-[10px] tracking-wider uppercase transition-colors duration-300",
-                  showAlmamater
+                  isToggled
                     ? "bg-surface-light text-surface-dark"
                     : "bg-surface-dark text-surface-light"
                 )}
               >
                 <span className="hidden md:inline">Hover / Click</span>
-                <span className="md:hidden">Tap to Switch</span>
+                <span className="md:hidden">Tap / Drag</span>
               </span>
             </div>
           </div>
@@ -182,7 +128,7 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
                 {activePortrait.caption}
               </p>
               <p className="truncate font-mono text-[10px] text-text-secondary">
-                {showAlmamater
+                {isToggled
                   ? "Telkom University — S1 Informatika"
                   : "Default Professional Attire"}
               </p>
@@ -195,14 +141,11 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
             >
               <button
                 type="button"
-                onClick={() => {
-                  setIsHovered(false);
-                  setIsToggled(false);
-                }}
-                aria-pressed={!showAlmamater}
+                onClick={() => setIsToggled(false)}
+                aria-pressed={!isToggled}
                 className={cn(
                   "min-h-[32px] px-2.5 py-1 font-mono text-[10px] tracking-wider uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary",
-                  !showAlmamater
+                  !isToggled
                     ? "bg-surface-dark text-surface-light"
                     : "text-text-secondary hover:text-text-primary"
                 )}
@@ -211,13 +154,11 @@ export function InteractivePortrait({ portraits }: InteractivePortraitProps) {
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setIsToggled(true);
-                }}
-                aria-pressed={showAlmamater}
+                onClick={() => setIsToggled(true)}
+                aria-pressed={isToggled}
                 className={cn(
                   "min-h-[32px] px-2.5 py-1 font-mono text-[10px] tracking-wider uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary",
-                  showAlmamater
+                  isToggled
                     ? "bg-surface-dark text-surface-light"
                     : "text-text-secondary hover:text-text-primary"
                 )}
