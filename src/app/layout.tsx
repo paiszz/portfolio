@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/animations/MotionProvider";
+import { SmoothScrollProvider } from "@/components/animations/SmoothScrollProvider";
+import { Navbar } from "@/components/navigation/Navbar";
+import { DoorTransitionOverlay } from "@/components/projects/DoorTransitionOverlay";
+import { DoorTransitionProvider } from "@/context/DoorTransitionContext";
 import { SITE_CONFIG } from "@/lib/constants";
 import "./globals.css";
 
@@ -48,7 +52,21 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <DoorTransitionProvider>
+            <SmoothScrollProvider>
+              <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[90] focus:bg-surface-dark focus:px-4 focus:py-2.5 focus:font-mono focus:text-xs focus:font-semibold focus:tracking-widest focus:text-surface-light focus:uppercase focus:outline-2 focus:outline-offset-2 focus:outline-text-primary"
+              >
+                Skip to main content
+              </a>
+              <Navbar />
+              {children}
+              <DoorTransitionOverlay />
+            </SmoothScrollProvider>
+          </DoorTransitionProvider>
+        </MotionProvider>
       </body>
     </html>
   );
