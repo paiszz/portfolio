@@ -1,12 +1,37 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { CONTACT_DATA, type ContactChannel } from "@/data/contact";
 import { Reveal } from "@/components/animations/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
 
 function ChannelIcon({ id }: { id: ContactChannel["id"] }) {
   switch (id) {
-    case "email":
-      return <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />;
+    case "instagram":
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          className="h-4 w-4"
+          aria-hidden="true"
+        >
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+            stroke="currentColor"
+            strokeWidth="1.75"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+            stroke="currentColor"
+            strokeWidth="1.75"
+          />
+          <circle cx="17.25" cy="6.75" r="1" fill="currentColor" />
+        </svg>
+      );
     case "linkedin":
       return (
         <svg
@@ -114,14 +139,8 @@ export function ContactSection() {
                     <a
                       key={channel.id}
                       href={channel.href}
-                      target={
-                        channel.id === "email" ? undefined : "_blank"
-                      }
-                      rel={
-                        channel.id === "email"
-                          ? undefined
-                          : "noopener noreferrer"
-                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
                     >
                       {content}

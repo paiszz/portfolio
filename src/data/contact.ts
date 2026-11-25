@@ -1,5 +1,5 @@
 export interface ContactChannel {
-  id: "email" | "linkedin" | "github";
+  id: "instagram" | "linkedin" | "github";
   label: string;
   value: string;
   href?: string;
@@ -12,10 +12,10 @@ export const CONTACT_DATA = {
     "Open for software development collaborations, frontend engineering roles, UI/UX design discussions, and creative visual projects.",
   channels: [
     {
-      id: "email",
-      label: "Personal Email",
-      value: "rfaizherlambang@gmail.com",
-      href: "mailto:rfaizherlambang@gmail.com",
+      id: "instagram",
+      label: "Instagram",
+      value: "instagram.com/rdw4nfz13",
+      href: "https://www.instagram.com/rdw4nfz13/",
       isConfigured: true,
     },
     {
