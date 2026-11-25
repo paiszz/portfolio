@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -10,6 +12,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ProjectCard } from "@/components/projects/ProjectCard";
+import { useDoorTransition } from "@/context/DoorTransitionContext";
 import { cn } from "@/lib/utils";
 import type { ProjectItem, SectorCategory } from "@/types/portfolio";
 
@@ -70,6 +73,30 @@ function StackedCardItem({ project, index, total }: StackedCardItemProps) {
   );
 }
 
+function BackToSectorsButton({ className }: { className?: string }) {
+  const router = useRouter();
+  const { transitionPhase, returnHref, exitProjectTo } = useDoorTransition();
+  const isExiting = transitionPhase === "exiting";
+
+  return (
+    <button
+      type="button"
+      onClick={() => exitProjectTo(returnHref)}
+      onMouseEnter={() => router.prefetch(returnHref)}
+      disabled={isExiting}
+      className={cn(
+        "inline-flex min-h-[40px] items-center gap-2 rounded-full border border-border-subtle bg-bg-primary px-4 py-2 font-mono text-xs font-semibold tracking-wider text-text-primary shadow-[0_8px_22px_-12px_rgba(17,17,17,0.18)] transition-colors",
+        "hover:border-text-primary hover:bg-surface-dark hover:text-surface-light",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary disabled:opacity-60",
+        className
+      )}
+    >
+      <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+      <span>Back to sectors</span>
+    </button>
+  );
+}
+
 export function ProjectCardStack({
   sector,
   allSectors,
@@ -78,11 +105,14 @@ export function ProjectCardStack({
   return (
     <div id="project-stack-anchor" className="mt-10 scroll-mt-24">
       {/* Quick Sector Switcher Bar */}
-      <div className="flex flex-col justify-between gap-4 border-b border-border-subtle pb-5 sm:flex-row sm:items-center">
-        <p className="font-mono text-xs tracking-wider text-text-secondary uppercase">
-          {projects.length} {projects.length === 1 ? "Entry" : "Entries"} in{" "}
-          {sector.id} · Scroll to Inspect
-        </p>
+      <div className="flex flex-col justify-between gap-4 border-b border-border-subtle pb-5 lg:flex-row lg:items-center">
+        <div className="flex flex-wrap items-center gap-3">
+          <BackToSectorsButton />
+          <p className="font-mono text-xs tracking-wider text-text-secondary uppercase">
+            {projects.length} {projects.length === 1 ? "Entry" : "Entries"} in{" "}
+            {sector.id} · Scroll to Inspect
+          </p>
+        </div>
 
         <nav
           aria-label="Switch active project sector"
@@ -120,6 +150,11 @@ export function ProjectCardStack({
             total={projects.length}
           />
         ))}
+      </div>
+
+      {/* End-of-Stack Back to Sectors Action */}
+      <div className="mt-8 flex justify-end border-t border-border-subtle pt-6 md:mt-10">
+        <BackToSectorsButton className="min-h-[44px] w-full justify-center px-5 py-2.5 sm:w-auto" />
       </div>
     </div>
   );
