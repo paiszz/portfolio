@@ -449,8 +449,8 @@ export function Navbar() {
         whileHover={shouldReduceMotion ? undefined : { scale: 1.005 }}
         transition={shouldReduceMotion ? { duration: 0 } : PILL_SPRING}
         className={cn(
-          "pointer-events-auto relative isolate hidden md:flex items-center rounded-full border border-white/80 ring-1 ring-black/[0.08]",
-          "bg-white/[0.84] text-text-primary backdrop-blur-xl backdrop-saturate-150",
+          "pointer-events-auto relative isolate hidden md:flex items-center rounded-full border border-surface-light/80 ring-1 ring-black/[0.08]",
+          "bg-bg-primary/85 text-text-primary backdrop-blur-xl backdrop-saturate-150",
           "shadow-[0_14px_34px_-12px_rgba(17,17,17,0.2),0_2px_8px_-2px_rgba(17,17,17,0.06),inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(17,17,17,0.05)]",
           "transition-colors",
           isExpandedDesktop
@@ -571,7 +571,7 @@ export function Navbar() {
         <motion.div
           layout
           transition={shouldReduceMotion ? { duration: 0 } : PILL_SPRING}
-          className="relative flex w-full items-center justify-between gap-2 rounded-full border border-white/80 ring-1 ring-black/[0.08] bg-white/[0.85] px-2 py-1.5 text-text-primary shadow-[0_14px_34px_-12px_rgba(17,17,17,0.2),0_2px_8px_-2px_rgba(17,17,17,0.06),inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(17,17,17,0.05)] backdrop-blur-xl backdrop-saturate-150"
+          className="relative flex w-full items-center justify-between gap-2 rounded-full border border-surface-light/80 ring-1 ring-black/[0.08] bg-bg-primary/85 px-2 py-1.5 text-text-primary shadow-[0_14px_34px_-12px_rgba(17,17,17,0.2),0_2px_8px_-2px_rgba(17,17,17,0.06),inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(17,17,17,0.05)] backdrop-blur-xl backdrop-saturate-150"
         >
           <span
             aria-hidden="true"
@@ -608,7 +608,7 @@ export function Navbar() {
               </span>
             </span>
 
-            <span className="flex h-6 w-6 items-center justify-center rounded-full border border-black/[0.08] bg-white/75 text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full border border-black/[0.08] bg-bg-primary/75 text-text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
               {mobileOpen ? (
                 <X className="h-3.5 w-3.5" aria-hidden="true" />
               ) : (
@@ -643,7 +643,7 @@ export function Navbar() {
                   ? { duration: 0 }
                   : { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
               }
-              className="relative mt-2 w-full rounded-3xl border border-white/80 ring-1 ring-black/[0.08] bg-white/[0.88] p-2 shadow-[0_20px_44px_-14px_rgba(17,17,17,0.22),inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(17,17,17,0.05)] backdrop-blur-2xl backdrop-saturate-150"
+              className="relative mt-2 w-full rounded-3xl border border-surface-light/80 ring-1 ring-black/[0.08] bg-bg-primary/90 p-2 shadow-[0_20px_44px_-14px_rgba(17,17,17,0.22),inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(17,17,17,0.05)] backdrop-blur-2xl backdrop-saturate-150"
             >
               <span
                 aria-hidden="true"
