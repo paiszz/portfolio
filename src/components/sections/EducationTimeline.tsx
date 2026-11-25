@@ -7,7 +7,7 @@ import {
   useScroll,
   useSpring,
 } from "motion/react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, School } from "lucide-react";
 import { Reveal } from "@/components/animations/Reveal";
 import type { EducationItem } from "@/types/portfolio";
 
@@ -73,7 +73,7 @@ export function EducationTimeline({ items }: EducationTimelineProps) {
                         {itemNumber}
                       </span>
                       <span className="font-mono text-[11px] tracking-wider text-text-secondary uppercase">
-                        Undergraduate Program
+                        {item.category ?? "Undergraduate Program"}
                       </span>
                     </div>
 
@@ -96,7 +96,11 @@ export function EducationTimeline({ items }: EducationTimelineProps) {
                       aria-hidden="true"
                       className="flex h-10 w-10 shrink-0 items-center justify-center border border-border-subtle bg-bg-secondary text-text-primary"
                     >
-                      <GraduationCap className="h-5 w-5" strokeWidth={1.75} />
+                      {item.icon === "school" ? (
+                        <School className="h-5 w-5" strokeWidth={1.75} />
+                      ) : (
+                        <GraduationCap className="h-5 w-5" strokeWidth={1.75} />
+                      )}
                     </div>
                   </div>
                 </article>

@@ -121,6 +121,8 @@ export interface EducationItem {
   id: string;
   institution: string;
   degree: string;
+  category?: string;
+  icon?: "graduation-cap" | "school";
   period: string;
   highlights: string[];
 }
