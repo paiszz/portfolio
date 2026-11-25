@@ -15,9 +15,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_CONFIG.url,
-      lastModified: new Date("2026-11-24T00:00:00.000Z"),
+      lastModified: new Date("2026-11-25T00:00:00.000Z"),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_CONFIG.url}/projects`,
+      lastModified: new Date("2026-11-25T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     ...sectorEntries,
   ];

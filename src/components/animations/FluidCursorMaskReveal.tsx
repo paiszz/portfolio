@@ -61,18 +61,7 @@ export function FluidCursorMaskReveal({
     }))
   );
 
-  // Preload reveal image for Canvas 2D compositing
-  useEffect(() => {
-    const img = new window.Image();
-    img.src = revealSrc;
-    revealImgRef.current = img;
-
-    return () => {
-      revealImgRef.current = null;
-    };
-  }, [revealSrc]);
-
-  // Keep canvas resolution synced to container dimensions
+  // Sync canvas resolution to container dimensions
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
@@ -291,7 +280,6 @@ export function FluidCursorMaskReveal({
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"
         className="object-cover"
-        priority
       />
 
       {/* HTML5 Canvas Fluid Cursor Mask Reveal Layer */}
@@ -320,6 +308,9 @@ export function FluidCursorMaskReveal({
           alt={revealAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"
+          onLoad={(event) => {
+            revealImgRef.current = event.currentTarget;
+          }}
           className="object-cover"
         />
       </motion.div>
