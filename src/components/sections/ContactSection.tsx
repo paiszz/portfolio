@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { CONTACT_DATA, type ContactChannel } from "@/data/contact";
 import { Reveal } from "@/components/animations/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -74,6 +74,10 @@ function ChannelIcon({ id }: { id: ContactChannel["id"] }) {
             strokeLinejoin="round"
           />
         </svg>
+      );
+    case "cv":
+      return (
+        <FileText className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
       );
   }
 }

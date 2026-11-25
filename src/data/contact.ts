@@ -1,5 +1,5 @@
 export interface ContactChannel {
-  id: "instagram" | "linkedin" | "github";
+  id: "instagram" | "linkedin" | "github" | "cv";
   label: string;
   value: string;
   href?: string;
@@ -30,6 +30,13 @@ export const CONTACT_DATA = {
       label: "GitHub",
       value: "github.com/paiszz",
       href: "https://github.com/paiszz",
+      isConfigured: true,
+    },
+    {
+      id: "cv",
+      label: "Curriculum Vitae",
+      value: "CV_Ridwan Faiz Herlambang.pdf",
+      href: "/cv/CV_Ridwan%20Faiz%20Herlambang.pdf",
       isConfigured: true,
     },
   ] as ContactChannel[],

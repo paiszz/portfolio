@@ -28,7 +28,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="font-mono text-[11px] tracking-widest text-text-secondary uppercase transition-colors hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
               >
-                {channel.label}
+                {channel.id === "cv" ? "CV" : channel.label}
               </a>
             ))}
           <span className="font-mono text-[11px] tracking-widest text-text-secondary uppercase">

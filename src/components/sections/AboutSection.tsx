@@ -1,6 +1,9 @@
+import { ArrowUpRight, Download } from "lucide-react";
 import { ABOUT_DATA } from "@/data/about";
 import { Reveal } from "@/components/animations/Reveal";
 import { InteractivePortrait } from "@/components/sections/InteractivePortrait";
+
+const CV_HREF = "/cv/CV_Ridwan%20Faiz%20Herlambang.pdf";
 
 export function AboutSection() {
   return (
@@ -54,6 +57,29 @@ export function AboutSection() {
                 );
               })}
             </div>
+
+            <Reveal delay={0.36} yOffset={14} className="mt-8 border-t border-border-subtle pt-6">
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={CV_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-surface-dark px-5 py-2.5 font-mono text-xs font-semibold tracking-widest text-surface-light uppercase transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
+                >
+                  <span>View CV</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
+
+                <a
+                  href={CV_HREF}
+                  download="CV_Ridwan Faiz Herlambang.pdf"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-border-subtle bg-bg-primary px-5 py-2.5 font-mono text-xs font-semibold tracking-widest text-text-primary uppercase transition-colors hover:border-text-primary hover:bg-bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
+                >
+                  <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Download CV</span>
+                </a>
+              </div>
+            </Reveal>
           </div>
 
           {/* Right Column: Interactive Dual Portrait */}
