@@ -60,7 +60,6 @@ function ReelSlot({ index, items, delay, cycleTick }: ReelSlotProps) {
     <button
       type="button"
       onClick={triggerManualRoll}
-      onMouseEnter={triggerManualRoll}
       aria-label={`${title} — replay rolling text`}
       className={cn(
         "group relative flex w-full items-center justify-between gap-3 border border-border-subtle bg-bg-primary/85 px-3.5 py-2.5 text-left transition-colors sm:px-4",

@@ -1,4 +1,4 @@
-import type { ProjectItem, SectorCategory } from "@/types/portfolio";
+import type { ProjectItem, SectorCategory, SectorId } from "@/types/portfolio";
 
 export const SECTOR_CATEGORIES: SectorCategory[] = [
   {
@@ -157,3 +157,8 @@ export const PROJECT_ITEMS: ProjectItem[] = [
       "Event documentation and video bumper placeholder awaiting asset upload",
   },
 ];
+
+export function getSectorProjects(sectorId: SectorId): ProjectItem[] {
+  return PROJECT_ITEMS.filter((item) => item.sectorId === sectorId);
+}
+

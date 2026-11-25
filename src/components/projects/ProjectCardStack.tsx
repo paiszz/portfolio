@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import {
-  AnimatePresence,
   motion,
   useReducedMotion,
   useScroll,
@@ -11,13 +11,12 @@ import {
 } from "motion/react";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { cn } from "@/lib/utils";
-import type { ProjectItem, SectorCategory, SectorId } from "@/types/portfolio";
+import type { ProjectItem, SectorCategory } from "@/types/portfolio";
 
 interface ProjectCardStackProps {
   sector: SectorCategory;
   allSectors: SectorCategory[];
   projects: ProjectItem[];
-  onSwitchSector: (id: SectorId) => void;
 }
 
 interface StackedCardItemProps {
@@ -32,24 +31,24 @@ function StackedCardItem({ project, index, total }: StackedCardItemProps) {
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start 18%", "end start"],
+    offset: ["start 15%", "end start"],
   });
 
-  const targetScale = 1 - Math.min((total - 1 - index) * 0.025, 0.07);
-  const rawScale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
-  const smoothScale = useSpring(rawScale, {
-    stiffness: 200,
-    damping: 28,
-    mass: 0.6,
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
   });
 
-  const stickyTopRem = 5.75 + index * 1.25;
+  const targetScale = 1 - Math.min((total - 1 - index) * 0.03, 0.08);
+  const smoothScale = useTransform(smoothProgress, [0, 1], [1, targetScale]);
+  const smoothOpacity = useTransform(smoothProgress, [0, 0.85, 1], [1, 1, 0.92]);
 
   return (
     <div
       ref={cardRef}
       style={{
-        top: `${stickyTopRem}rem`,
+        top: `calc(96px + ${index * 24}px)`,
       }}
       className="relative md:sticky"
     >
@@ -59,12 +58,13 @@ function StackedCardItem({ project, index, total }: StackedCardItemProps) {
             ? undefined
             : {
                 scale: smoothScale,
+                opacity: smoothOpacity,
                 transformOrigin: "top center",
               }
         }
         className="will-change-transform"
       >
-        <ProjectCard project={project} totalInSector={total} />
+        <ProjectCard project={project} index={index} totalInSector={total} />
       </motion.div>
     </div>
   );
@@ -74,81 +74,52 @@ export function ProjectCardStack({
   sector,
   allSectors,
   projects,
-  onSwitchSector,
 }: ProjectCardStackProps) {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <div id="project-stack-anchor" className="mt-14 scroll-mt-24 md:mt-20">
-      {/* Stack Header & Quick Sector Switcher */}
-      <div className="flex flex-col justify-between gap-4 border-t border-b border-border-subtle py-5 sm:flex-row sm:items-center">
-        <div>
-          <h3 className="text-xl font-bold tracking-tight text-text-primary sm:text-2xl">
-            {sector.id} — {sector.title} Showcase
-          </h3>
-          <p className="mt-1 font-mono text-xs tracking-wider text-text-secondary uppercase">
-            {projects.length} {projects.length === 1 ? "Project" : "Projects"}{" "}
-            in Stack · Scroll to Inspect
-          </p>
-        </div>
+    <div id="project-stack-anchor" className="mt-10 scroll-mt-24">
+      {/* Quick Sector Switcher Bar */}
+      <div className="flex flex-col justify-between gap-4 border-b border-border-subtle pb-5 sm:flex-row sm:items-center">
+        <p className="font-mono text-xs tracking-wider text-text-secondary uppercase">
+          {projects.length} {projects.length === 1 ? "Entry" : "Entries"} in{" "}
+          {sector.id} · Scroll to Inspect
+        </p>
 
-        <div
-          role="group"
+        <nav
           aria-label="Switch active project sector"
           className="flex flex-wrap items-center gap-1.5"
         >
           {allSectors.map((item) => {
             const isActive = item.id === sector.id;
             return (
-              <button
+              <Link
                 key={item.id}
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => onSwitchSector(item.id)}
+                href={`/projects/${item.id.toLowerCase()}`}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "min-h-[36px] px-3 py-1.5 font-mono text-xs font-medium tracking-wider uppercase transition-colors",
+                  "inline-flex min-h-[36px] items-center rounded-full px-3.5 py-1.5 font-mono text-xs font-medium tracking-wider uppercase transition-colors",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary",
                   isActive
                     ? "bg-surface-dark text-surface-light"
-                    : "bg-bg-secondary text-text-secondary hover:text-text-primary"
+                    : "border border-border-subtle bg-bg-secondary text-text-secondary hover:text-text-primary"
                 )}
               >
                 {item.id}
-              </button>
+              </Link>
             );
           })}
-        </div>
+        </nav>
       </div>
 
-      {/* Stacked Cards Container (Sticky Stack on Desktop, Natural Vertical Scroll on Mobile) */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={sector.id}
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
-          transition={
-            shouldReduceMotion
-              ? { duration: 0 }
-              : { duration: 0.32, ease: [0.22, 1, 0.36, 1] }
-          }
-          className="mt-8 space-y-6 md:space-y-10"
-        >
-          {projects.map((project, index) => (
-            <StackedCardItem
-              key={project.id}
-              project={project}
-              index={index}
-              total={projects.length}
-            />
-          ))}
-        </motion.div>
-      </AnimatePresence>
-
-      {/* End of Stack Marker */}
-      <div className="mt-8 flex items-center justify-between border-t border-border-subtle pt-4 font-mono text-[11px] tracking-widest text-text-secondary uppercase">
-        <span>END OF {sector.id} STACK</span>
-        <span>CONTINUE SCROLLING</span>
+      {/* Sticky Stacking Cards on Desktop, Natural Vertical Scroll on Mobile */}
+      <div className="mt-8 space-y-8 md:space-y-12">
+        {projects.map((project, index) => (
+          <StackedCardItem
+            key={project.id}
+            project={project}
+            index={index}
+            total={projects.length}
+          />
+        ))}
       </div>
     </div>
   );

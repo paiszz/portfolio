@@ -9,6 +9,7 @@ interface SectorPreviewProps {
   isEntered: boolean;
   projectCount: number;
   verifiedCount: number;
+  wipCount?: number;
   onEnterSector: (id: SectorId) => void;
 }
 
@@ -17,8 +18,15 @@ export function SectorPreview({
   isEntered,
   projectCount,
   verifiedCount,
+  wipCount = 0,
   onEnterSector,
 }: SectorPreviewProps) {
+  const pendingCount = Math.max(0, projectCount - verifiedCount - wipCount);
+  const summaryParts: string[] = [];
+  if (verifiedCount > 0) summaryParts.push(`${verifiedCount} Verified`);
+  if (wipCount > 0) summaryParts.push(`${wipCount} Work in Progress`);
+  if (pendingCount > 0) summaryParts.push(`${pendingCount} Pending Assets`);
+
   return (
     <div
       role="region"
@@ -80,9 +88,9 @@ export function SectorPreview({
               {projectCount} {projectCount === 1 ? "Entry" : "Entries"} in Sector
             </p>
             <p className="mt-0.5 font-mono text-[10px] text-text-secondary">
-              {verifiedCount > 0
-                ? `${verifiedCount} Verified · ${projectCount - verifiedCount} Pending Confirmation`
-                : "Candidate Slots Pending Confirmation"}
+              {summaryParts.length > 0
+                ? summaryParts.join(" · ")
+                : "Sector Ready"}
             </p>
           </div>
 

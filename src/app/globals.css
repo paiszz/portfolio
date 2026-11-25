@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
   /* Core Black & White Editorial Palette (PRD 2.2) */
@@ -45,9 +46,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+}
+
+html.lenis {
+  scroll-behavior: auto;
 }
 
 body {
@@ -95,6 +99,14 @@ body {
   .container-editorial {
     padding-inline: 3rem;
   }
+}
+
+/* Hide lower sections & footer during active 3D door transition */
+html[data-door-transition="active"] #projects ~ *,
+html[data-door-transition="active"] footer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
 }
 
 /* Respect User Motion Preferences (PRD 2.4 & 11) */
